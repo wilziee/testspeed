@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaerisoft Speed Test | Premium Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <div class="bg-noise"></div>
+    <div class="aurora-container">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+    
+    <canvas id="universe-canvas"></canvas>
+
+    <main class="app-container">
+        <header class="header">
+            <h1 class="logo-title">XAERISOFT <span>SPEED TEST</span></h1>
+            <p class="creator">Created by: <strong>WillXD</strong></p>
+        </header>
+
+        <section class="glass-card dashboard">
+            <div class="speedometer-container">
+                <svg viewBox="0 0 200 120" class="speedometer-svg">
+                    <defs>
+                        <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#6D28D9" />
+                            <stop offset="50%" stop-color="#8B5CF6" />
+                            <stop offset="100%" stop-color="#A855F7" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" />
+                    <path class="gauge-progress" id="gauge-progress" d="M 20 100 A 80 80 0 0 1 180 100" />
+                    <g id="needle-group" transform="translate(100, 100) rotate(-90)">
+                        <polygon points="-3,-5 3,-5 0,-85" class="needle" filter="url(#glow)"/>
+                        <circle cx="0" cy="0" r="6" class="needle-center" />
+                    </g>
+                </svg>
+                <div class="live-metric">
+                    <span id="live-value">0.00</span>
+                    <span class="live-unit">Mbps</span>
+                    <div id="live-label" class="live-label">Ready</div>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span class="metric-icon">⬇</span>
+                    <div class="metric-info">
+                        <span class="metric-title">Download</span>
+                        <div class="metric-value"><span id="val-download">--</span> <small>Mbps</small></div>
+                    </div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-icon">⬆</span>
+                    <div class="metric-info">
+                        <span class="metric-title">Upload</span>
+                        <div class="metric-value"><span id="val-upload">--</span> <small>Mbps</small></div>
+                    </div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-icon">📶</span>
+                    <div class="metric-info">
+                        <span class="metric-title">Ping</span>
+                        <div class="metric-value"><span id="val-ping">--</span> <small>ms</small></div>
+                    </div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-icon">✨</span>
+                    <div class="metric-info">
+                        <span class="metric-title">Status</span>
+                        <div class="metric-value status-text" id="val-status">Standby</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="device-info-bar">
+                <div class="info-item">🌍 <span id="info-online">Online</span></div>
+                <div class="info-item">📡 <span id="info-connection">--</span></div>
+                <div class="info-item">🖥 <span id="info-browser">--</span></div>
+                <div class="info-item">📱 <span id="info-device">--</span></div>
+                <div class="info-item">🕒 <span id="info-duration">0.0s</span></div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" id="btn-start">Start Test</button>
+                <button class="btn btn-danger" id="btn-stop" disabled>Stop</button>
+                <button class="btn btn-secondary" id="btn-copy">Copy Result</button>
+                <button class="btn btn-secondary" id="btn-download">Download Result</button>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Copyright &copy; 2026 WillXD. All Rights Reserved.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
